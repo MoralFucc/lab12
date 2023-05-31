@@ -13,11 +13,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 import com.topic3.android.reddit.components.ImagePost
 import com.topic3.android.reddit.components.TextPost
 import com.topic3.android.reddit.domain.model.PostModel
 import com.topic3.android.reddit.domain.model.PostType
 import com.topic3.android.reddit.viewmodel.MainViewModel
+import com.topic3.android.reddit.views.TrendingTopicView
 
 
 @Composable
@@ -54,4 +56,14 @@ private data class TrendingTopicModel(
     val text: String,
     @DrawableRes val imageRes: Int = 0
 )
+
+@Composable
+private fun TrendingTopic(trendingTopic: TrendingTopicModel){
+    AndroidView({context ->
+        TrendingTopicView(context).apply {
+            text = trendingTopic.text
+            image  = trendingTopic.imageRes
+        }
+    })
+}
 
