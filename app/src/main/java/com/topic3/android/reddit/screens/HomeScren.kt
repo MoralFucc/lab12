@@ -12,8 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import com.topic3.android.reddit.R
 import com.topic3.android.reddit.components.ImagePost
 import com.topic3.android.reddit.components.TextPost
 import com.topic3.android.reddit.domain.model.PostModel
@@ -65,5 +67,24 @@ private fun TrendingTopic(trendingTopic: TrendingTopicModel){
             image  = trendingTopic.imageRes
         }
     })
+}
+
+
+@Preview
+@Composable
+private fun TrendingTopicsPreview(){
+    TrendingTopics(trendingTopics = trendingItems)
+}
+
+@Preview(showBackground = true)
+@Composable
+
+private fun TrendingTopicPreview() {
+    TrendingTopic(
+        trendingTopic = TrendingTopicModel(
+            "Compose Animations",
+            R.drawable.jetpack_compose_animations
+        )
+    )
 }
 
